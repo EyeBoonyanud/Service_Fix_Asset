@@ -4,9 +4,9 @@ const path = require("path");
 const app = express();
 app.use(express.json());
 
-oracledb.initOracleClient({
-  tnsAdmin: "D:\\app\\Administrator\\product\\11.2.0\\client_1\\network\\admin",
-});
+// oracledb.initOracleClient({
+//   tnsAdmin: "D:\\app\\Administrator\\product\\11.2.0\\client_1\\network\\admin",
+// });
 
 const AVO = {
   user: "avo",

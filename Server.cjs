@@ -21,9 +21,10 @@ const PDF_Fammaster =require("./PDF_fam_master/PDF_fammaster_service.cjs")
 const Homepage =require('./Server/Homepage.cjs')
 const Mail =require("./Mail/Mail.cjs")
 oracledb.initOracleClient({
-  tnsAdmin: "D:\\app\\Administrator\\product\\11.2.0\\client_1\\network\\admin",
-
+  // tnsAdmin: "D:\\app\\Administrator\\product\\11.2.0\\client_1\\network\\admin",
+tnsAdmin: process.env.TNS_ADMIN,
 });
+
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");

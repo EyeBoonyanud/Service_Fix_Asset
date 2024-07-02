@@ -7,15 +7,21 @@ const port = 5000;
 
 app.use(express.json());
 
-oracledb.initOracleClient({
-  tnsAdmin: "D:\\app\\Administrator\\product\\11.2.0\\client_1\\network\\admin",
-});
+// oracledb.initOracleClient({
+//   tnsAdmin: "D:\\app\\Administrator\\product\\11.2.0\\client_1\\network\\admin",
+// });
 
+// const CUSR = {
+//   user: process.env.USER_CUSR,
+//   password: process.env.PASS_CUSR,
+//   connectString: process.env.CON_CUSR,
+// };
 const CUSR = {
-  user: process.env.USER_CUSR,
-  password: process.env.PASS_CUSR,
-  connectString: process.env.CON_CUSR,
+  user: "cusr",
+  password: "cusr",
+  connectString: "TCIX01",
 };
+
 
 module.exports.login = async (req, res) => {
   try {

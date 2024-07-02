@@ -6,10 +6,10 @@ const app = express();
 const port = 5000;
 app.use(express.json());
 
-oracledb.initOracleClient({
-  tnsAdmin: "D:\\app\\Administrator\\product\\11.2.0\\client_1\\network\\admin",
-  //process.env.TNS_ADMIN
-});
+// oracledb.initOracleClient({
+//   tnsAdmin: "D:\\app\\Administrator\\product\\11.2.0\\client_1\\network\\admin",
+//   //process.env.TNS_ADMIN
+// });
 
 const AVO = {
   user: "avo",
