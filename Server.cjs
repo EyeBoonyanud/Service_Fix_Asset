@@ -338,7 +338,6 @@ app.post("/sendEmail", async (req, res) => {
       html: req.body.emailMessage
     };
  
-    console.log("Email Sended",req.body.toEmail,req.body.subject);
     await transporter.sendMail(mailOptions);
     res.status(200).json({ message: "Email sent successfully" });
   } catch (error) {
@@ -346,18 +345,17 @@ app.post("/sendEmail", async (req, res) => {
     res.status(500).json({ error: "An error occurred while sending email" });
   }
 });
-//app.use('/downloads', express.static('/data/Api/Component/uploads/'));
-app.use('/downloads', express.static(__dirname));
+app.use('/downloads', express.static('/data/Api/Component/uploads/'));
+//app.use('/downloads', express.static(__dirname));
 //getFAM_FILE_ATTACH
 app.get('/downloads', (req, res) => {
   const fileName = req.query.filename;
-  const filePath = path.join(__dirname, '../Uploads', fileName);
-  console.log(filePath)
+  // const filePath = path.join(__dirname, '../Uploads', fileName);
+  const filePath = path.join('/data/eye/FixAsset-System/FixAssetSystem/FixAsset/Uploads/', fileName);
   // ตรวจสอบว่าไฟล์มีอยู่หรือไม่
   if (fs.existsSync(filePath)) {
     // ส่งไฟล์กลับไปยังผู้ใช้
     res.sendFile(filePath);
-    console.log(filePath)
     // res.sendFile(filePath);
   } else {
     // ถ้าไม่พบไฟล์, ส่งข้อความแจ้งเตือน
@@ -367,7 +365,8 @@ app.get('/downloads', (req, res) => {
 app.delete('/deleteFile', (req, res) => {
 
   const fileName = req.query.data; 
-  const filePath = path.join(__dirname, '../Uploads', fileName);
+  const filePath = path.join('/data/eye/FixAsset-System/FixAssetSystem/FixAsset/Uploads/', fileName);
+  // const filePath = path.join(__dirname, '../Uploads', fileName);
   fs.unlink(filePath, (err) => {
       if (err) {
           console.error(err);
@@ -380,5 +379,5 @@ app.delete('/deleteFile', (req, res) => {
 
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Connect Complete`);
 });

@@ -18,7 +18,6 @@ const AVO = {
   module.exports.getMailshow = async (req, res) => {
     try {
       const { Name } = req.body;
-      console.log(Name)
       const connect = await oracledb.getConnection(AVO);
       const query = `
         SELECT DISTINCT FPM_EMAIL , USER_FNAME ||' '|| USER_SURNAME  
@@ -27,7 +26,6 @@ const AVO = {
         WHERE FPM_USER_LOGIN ='${Name}'
       `;
       const result = await connect.execute(query);
-      console.log(result)
       connect.release();
       let Email = []
       let dataName = []
@@ -48,7 +46,6 @@ const AVO = {
   module.exports.getType_mail = async (req, res) => {
     try {
       const { Type_show } = req.body;
- console.log(Type_show,"ooooooooooooop")
       const connect = await oracledb.getConnection(AVO);
       const query = `
       SELECT FCM_DESC FROM FAM_CODE_MASTER WHERE FCM_CODE ='${Type_show}'
@@ -123,12 +120,10 @@ const AVO = {
   module.exports.getStatus_Mail = async (req, res) => {
     try {
       const { sts } = req.body;
-        console.log(sts,"sts")
         const connect = await oracledb.getConnection(AVO);
         const query = `
         SELECT FFM_DESC  FROM FAM_FLOW_MASTER WHERE FFM_CODE = '${sts}'
         `;
-    console.log(query,"data:::::")
   
       const result = await connect.execute(query);
     
@@ -141,10 +136,8 @@ const AVO = {
   };
   // เพิ่มล่าสุดวันที่ 04/04/2024
   module.exports.get_req_mail = async (req, res) => {
-    console.log("TTTTT")
     try {
       const { Name } = req.body;
-      console.log("Name:",Name)
       const connect = await oracledb.getConnection(AVO);
       const query = `
       SELECT DISTINCT FPM_EMAIL , USER_FNAME ||' '|| USER_SURNAME  
@@ -156,7 +149,6 @@ const AVO = {
       const result = await connect.execute(query);
     
       connect.release();
-      console.log("////",result.rows)
       res.status(200).json(result.rows);
     } catch (error) {
       console.error("Error sending email:", error);
