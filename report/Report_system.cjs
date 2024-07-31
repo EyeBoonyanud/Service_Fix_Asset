@@ -32,7 +32,6 @@ const CUSR = {
 module.exports.getFamDetailReport = async function (req, res) {
   try {
     const{Fac,CC, RequestType,FAMNo_From,FamNo_To,OwnerID }=  req.body;
-    console.log(Fac,CC, RequestType,FAMNo_From,FamNo_To,OwnerID)
     const connect = await oracledb.getConnection(AVO);
     const query = `
     SELECT DISTINCT *
@@ -115,7 +114,6 @@ module.exports.getFamDetailReport = async function (req, res) {
     ORDER BY 1,2,3
          
      `;
-     console.log(query);
     const result = await connect.execute(query);
     connect.release();
     res.json(result.rows);
@@ -156,7 +154,6 @@ module.exports.getFamDetailReport = async function (req, res) {
   };
 
   module.exports.getFAM_FILE_DATA = async function (req, res) {
-    console.log("g-hk")
     try {
        const{FamNo,ATT_FROM}=  req.body;
       const connect = await oracledb.getConnection(AVO);
@@ -165,7 +162,6 @@ module.exports.getFamDetailReport = async function (req, res) {
       FROM FAM_FILE_ATTACH T WHERE T.FFA_FAM_NO = '${FamNo}' AND FFA_ATT_FROM ='${ATT_FROM}'                                                                      
       ORDER BY T.FFA_FAM_NO,T.FFA_ATT_FROM,T.FFA_FILE_SEQ,T.FFA_FILE_NAME
        `;
-       console.log(query)
       const result = await connect.execute(query);
       connect.release();
       res.json(result.rows);
